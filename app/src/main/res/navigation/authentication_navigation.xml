@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/authentication_navigation"
+    app:startDestination="@id/startedFragment">
+    <fragment
+        android:id="@+id/startedFragment"
+        android:name="com.cataract.detection.authentication.StartedFragment"
+        android:label="fragment_started"
+        tools:layout="@layout/fragment_started" />
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.cataract.detection.authentication.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.cataract.detection.authentication.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+</navigation>

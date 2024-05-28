@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home_24px"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/nav_artikel"
+        android:icon="@drawable/article_24px"
+        android:title="Artikel"/>
+
+    <item
+        android:id="@+id/nav_deteksi"
+        android:icon="@drawable/visibility_24px"
+        android:title="Deteksi"/>
+
+    <item
+        android:id="@+id/nav_riwayat"
+        android:icon="@drawable/history_toggle_off_24px"
+        android:title="Riwayat"/>
+
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/settings_24px"
+        android:title="Setting"/>
+
+</menu>
