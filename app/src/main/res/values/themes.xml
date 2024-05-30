@@ -50,4 +50,28 @@
     </style>
 
     <style name="Theme.MyDetectionCataract" parent="Base.Theme.MyDetectionCataract" />
+
+    <style name="Heading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/outfit_bold</item>
+    </style>
+
+    <style name="SubHeading">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/outfit_regular</item>
+    </style>
+
+    <style name="TextSemiBold">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TextRegular">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
 </resources>
