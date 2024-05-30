@@ -3,4 +3,23 @@
     <string name="project_title">CatarAct</string>
     <string name="project_subtitle">Early Cataract Detection using Image Recognition</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="buat_akun">Buat Akun</string>
+    <string name="register">Register</string>
+    <string name="subheading_register">Mulai menjelajah dengan membuat akun Anda</string>
+    <string name="username">Username</string>
+    <string name="hint_username">Masukkan username</string>
+    <string name="kata_sandi">Kata Sandi</string>
+    <string name="hint_kata_sandi">Masukkan kata sandi</string>
+    <string name="konfirmasi_kata_sandi">Konfirmasi Kata Sandi</string>
+    <string name="hint_konfirmasi_kata_sandi">Konfirmasi kata sandi</string>
+    <string name="login_redirect">Sudah memiliki akun? Login</string>
+    <string name="alert_register">Registrasi Berhasil</string>
+    <string name="subheading_alert_register">Anda berhasil membuat akun baru</string>
+    <string name="menuju_beranda">Menuju Beranda</string>
+    <string name="masuk">Masuk</string>
+    <string name="login">Login</string>
+    <string name="subheading_login">Silakan masuk dengan akun yang telah terdaftar</string>
+    <string name="register_redirect">Belum memiliki akun? Register</string>
+    <string name="login_berhasil">Login Berhasil</string>
+    <string name="subheading_alert_login">Selamat, Anda telah berhasil masuk</string>
 </resources>
