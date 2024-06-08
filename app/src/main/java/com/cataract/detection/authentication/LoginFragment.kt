@@ -5,15 +5,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.cataract.detection.DashboardActivity
 import com.cataract.detection.R
 import com.cataract.detection.databinding.FragmentLoginBinding
+import com.cataract.detection.viewmodel.LoginViewModel
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    private val loginViewModel: LoginViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,8 +38,25 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonLogin.setOnClickListener {
-            binding.alertSuccess.visibility = View.VISIBLE
+            loginViewModel.login(
+                requireContext(),
+                binding.inputEmail.text,
+                binding.inputPhone.text,
+                binding.inputPassword.text
+            )
         }
+
+        loginViewModel.messageError.observe(requireActivity(), Observer{ message ->
+            message?.let {
+                showToast(it)
+            }
+        })
+
+        loginViewModel.messageSuccess.observe(requireActivity(), Observer{ message ->
+            message?.let {
+                binding.alertSuccess.visibility = View.VISIBLE
+            }
+        })
 
         binding.btnOk.setOnClickListener {
             binding.alertSuccess.visibility = View.GONE
@@ -40,6 +64,10 @@ class LoginFragment : Fragment() {
             startActivity(moveOn)
             requireActivity().finishAffinity()
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
     }
 
 }
