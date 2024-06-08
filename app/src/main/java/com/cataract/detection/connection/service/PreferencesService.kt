@@ -3,7 +3,7 @@ package com.cataract.detection.connection.service
 import android.content.Context
 import com.cataract.detection.connection.model.LoginModel
 
-internal class PreferenceService(context: Context) {
+internal class PreferencesService(context: Context) {
     private val preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
     fun setUser(data: LoginModel.Data?): Boolean {

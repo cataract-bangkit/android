@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ApiDashboardService(context: Context) {
 
-    private val preferenceService = PreferenceService(context)
+    private val preferenceService = PreferencesService(context)
 
     private val httpClient = OkHttpClient.Builder().apply {
         addInterceptor(AuthInterceptor(preferenceService))
@@ -22,7 +22,7 @@ class ApiDashboardService(context: Context) {
         .addConverterFactory(GsonConverterFactory.create())
         .build()
 
-    private class AuthInterceptor(private val preferenceService: PreferenceService) : Interceptor {
+    private class AuthInterceptor(private val preferenceService: PreferencesService) : Interceptor {
         override fun intercept(chain: Interceptor.Chain): Response {
             val token = preferenceService.getUserToken()
             val requestBuilder = chain.request().newBuilder()
