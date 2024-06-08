@@ -70,7 +70,7 @@ class LoginViewModel : ViewModel() {
 
     fun saveSession(context: Context, sessionData: LoginModel.Success) {
         val result = PreferencesService(context).setUser(sessionData.data)
-        
+
         if (result) {
             _messageSuccess.postValue("Berhasil Login")
         } else {
