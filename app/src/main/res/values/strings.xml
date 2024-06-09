@@ -28,4 +28,10 @@
     <string name="email">Email</string>
     <string name="phone">Nomor Telepon</string>
     <string name="hint_phone">0812 3456 7890</string>
+    <string name="detection">Deteksi</string>
+    <string name="img_preview">Image preview</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="instruction">Petunjuk Penggunaan</string>
+    <string name="instruction_desc">Tekan tombol \'Kamera\', lalu arahkan kamera ke depan mata. Untuk prediksi yang lebih akurat, dekatkan kamera ke depan mata dengan jarak sekitar 10 cm.</string>
 </resources>

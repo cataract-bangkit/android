@@ -5,20 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="top|center_horizontal"
+    android:padding="32dp"
     tools:context=".dashboard.DetectionFragment">
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/Heading"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:text="Detection" />
+        android:text="@string/detection"
+        android:layout_marginBottom="20dp"/>
 
     <FrameLayout
-        android:layout_width="200dp"
-        android:layout_height="200dp">
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:background="?attr/colorOnSurfaceInverse">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,7 +32,8 @@
                 android:id="@+id/imagePreview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/preview_image"
+                android:contentDescription="@string/img_preview" />
 
         </LinearLayout>
 
@@ -53,33 +56,54 @@
 
         </LinearLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/camera"
+                style="@style/TextSemiBold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/camera"
+                app:icon="@drawable/camera_24px"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/galery"
+                style="@style/TextSemiBold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/gallery"
+                app:icon="@drawable/gallery_24px"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_default="spread"
+                app:layout_constraintStart_toEndOf="@+id/camera" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </FrameLayout>
 
+    <TextView
+        style="@style/TextSemiBold"
+        android:text="@string/instruction"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp" />
 
-
-
-    <Button
-        android:id="@+id/camera"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Camera" />
-
-    <Button
-        android:id="@+id/galery"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Galery" />
+    <TextView
+        style="@style/TextRegular"
+        android:text="@string/instruction_desc"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp" />
 
     <Button
         android:id="@+id/deteksi"
+        style="@style/TextSemiBold"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Deteksi" />
-
-
+        android:text="@string/detection" />
 
 </LinearLayout>
