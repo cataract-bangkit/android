@@ -37,4 +37,9 @@
     <string name="result_detection">Hasil Deteksi</string>
     <string name="result">KATARAK/NORMAL</string>
     <string name="result_desc">Deteksi menunjukkan bahwa kondisi mata Anda %1s dengan tingkat kepercayaan %.1f%.</string>
+    <string name="history">Riwayat Deteksi</string>
+    <string name="history_title">Pendeteksian %1s</string>
+    <string name="history_hasil">Hasil:</string>
+    <string name="history_normal_cataract">Normal</string>
+    <string name="history_date">Deteksi pada 12/12/2012 12:20</string>
 </resources>

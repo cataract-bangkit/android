@@ -11,7 +11,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/cardHistory">
+        android:id="@+id/cardHistory"
+        android:padding="32dp">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/Heading"
+            android:text="@string/history"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:paddingBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHistory"
@@ -19,10 +31,10 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            tools:listitem="@layout/card_history"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
