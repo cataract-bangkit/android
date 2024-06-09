@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             app:hintEnabled="false">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/inputEmail"
                 style="@style/TextRegular"
                 android:drawableStart="@drawable/email_24px"
@@ -47,7 +47,8 @@
                 android:hint="@string/hint_email"
                 android:inputType="textEmailAddress"
                 android:padding="14dp"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:autofillHints="emailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -62,7 +63,7 @@
             android:layout_height="wrap_content"
             app:hintEnabled="false">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/inputPhone"
                 style="@style/TextRegular"
                 android:drawableStart="@drawable/phone_24px"
@@ -71,7 +72,8 @@
                 android:hint="@string/hint_phone"
                 android:inputType="phone"
                 android:padding="14dp"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:autofillHints="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -87,7 +89,7 @@
             app:endIconMode="password_toggle"
             app:hintEnabled="false">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/inputPassword"
                 style="@style/TextRegular"
                 android:drawableStart="@drawable/lock_24px"
@@ -96,7 +98,8 @@
                 android:hint="@string/hint_password"
                 android:inputType="textPassword"
                 android:padding="14dp"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:autofillHints="password" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

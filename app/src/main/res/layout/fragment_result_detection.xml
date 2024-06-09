@@ -17,9 +17,8 @@
         android:text="@string/result_detection"
         android:layout_marginBottom="20dp"/>
 
-
     <ImageView
-        android:id="@+id/imagePreview"
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/preview_image"

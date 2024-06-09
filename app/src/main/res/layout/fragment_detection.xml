@@ -63,13 +63,15 @@
             <Button
                 android:id="@+id/camera"
                 style="@style/TextSemiBold"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/camera"
                 app:icon="@drawable/camera_24px"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/galery"
+                app:layout_constraintWidth_default="spread"/>
 
             <Button
                 android:id="@+id/galery"
@@ -81,8 +83,8 @@
                 app:icon="@drawable/gallery_24px"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintWidth_default="spread"
-                app:layout_constraintStart_toEndOf="@+id/camera" />
+                app:layout_constraintStart_toEndOf="@+id/camera"
+                app:layout_constraintWidth_default="spread"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
