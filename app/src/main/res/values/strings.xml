@@ -34,4 +34,7 @@
     <string name="gallery">Galeri</string>
     <string name="instruction">Petunjuk Penggunaan</string>
     <string name="instruction_desc">Tekan tombol \'Kamera\', lalu arahkan kamera ke depan mata. Untuk prediksi yang lebih akurat, dekatkan kamera ke depan mata dengan jarak sekitar 10 cm.</string>
+    <string name="result_detection">Hasil Deteksi</string>
+    <string name="result">KATARAK/NORMAL</string>
+    <string name="result_desc">Deteksi menunjukkan bahwa kondisi mata Anda %1s dengan tingkat kepercayaan %.1f%.</string>
 </resources>
