@@ -5,20 +5,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:padding="32dp"
     tools:context=".onboarding.SplashScreen1Fragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/Heading"
         android:textAlignment="center"
         android:textSize="30sp"
         android:text="@string/project_title" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/SubHeading"
         android:textAlignment="center"
-        android:textSize="10sp"
+        android:textSize="20sp"
+        android:layout_marginTop="8dp"
         android:text="@string/project_subtitle" />
 
     <ProgressBar

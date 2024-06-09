@@ -5,21 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="top|center_horizontal"
+    android:padding="32dp"
     tools:context=".dashboard.DetailHistoryFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
+        style="@style/Heading"
         android:textAlignment="center"
-        android:text="Detail History" />
+        android:textSize="30sp"
+        android:text="@string/detail_history"
+        android:layout_marginBottom="20dp"/>
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/preview_image"
+        android:contentDescription="@string/img_preview" />
+
+    <TextView
+        style="@style/Heading"
         android:layout_marginTop="20dp"
-        android:src="@drawable/ic_launcher_background" />
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:text="@string/result_detection"/>
+
+    <TextView
+        style="@style/Heading"
+        android:textSize="32sp"
+        android:textColor="?attr/colorPrimary"
+        android:gravity="center"
+        android:text="@string/result"/>
+
+    <TextView
+        style="@style/TextRegular"
+        android:text="@string/result_desc"
+        android:textSize="16sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="20dp" />
 
 </LinearLayout>
