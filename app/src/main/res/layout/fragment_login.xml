@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,60 +9,48 @@
 
     <LinearLayout
         android:orientation="vertical"
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="32dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            style="@style/Heading"
-            android:textSize="32sp"
-            android:layout_marginTop="32dp"
-            android:text="@string/masuk" />
-
-        <TextView
-            style="@style/SubHeading"
-            android:textSize="20sp"
-            android:layout_marginBottom="32dp"
-            android:text="@string/subheading_login" />
-
-        <TextView
-            style="@style/TextSemiBold"
-            android:textSize="18sp"
-            android:text="@string/username" />
+        <ImageView
+            android:id="@+id/logoProject"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_background" />
 
         <EditText
-            android:id="@+id/inputUsername"
-            style="@style/TextRegular"
+            android:id="@+id/inputEmail"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="text"
-            android:hint="@string/hint_username" />
+            android:hint="Email" />
 
-        <TextView
-            style="@style/TextSemiBold"
-            android:textSize="18sp"
+        <EditText
+            android:id="@+id/inputPhone"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
             android:layout_marginTop="20dp"
-            android:text="@string/kata_sandi" />
+            android:hint="Phone" />
 
         <EditText
             android:id="@+id/inputPassword"
-            style="@style/TextRegular"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/hint_kata_sandi"
+            android:layout_marginTop="20dp"
+            android:hint="password"
             android:inputType="textPassword" />
 
         <Button
             android:id="@+id/buttonLogin"
-            style="@style/TextSemiBold"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="8dp"
-            android:textSize="16sp"
-            android:text="@string/login" />
-
-        <TextView
-            style="@style/SubHeading"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:text="@string/register_redirect" />
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Login" />
 
     </LinearLayout>
 
@@ -82,27 +71,31 @@
             android:orientation="vertical"
             android:gravity="center">
 
+
             <TextView
                 android:id="@+id/textView"
-                style="@style/Heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="30sp"
-                android:text="@string/login_berhasil" />
+                android:text="Sukses" />
 
             <TextView
                 android:id="@+id/textView2"
-                style="@style/SubHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="15sp"
-                android:layout_marginTop="16dp"
-                android:text="@string/subheading_alert_login" />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Selamat Anda Berhasil Login" />
 
             <Button
                 android:id="@+id/btnOk"
-                style="@style/TextSemiBold"
-                android:layout_marginTop="64dp"
-                android:layout_marginHorizontal="32dp"
-                android:text="@string/menuju_beranda" />
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Menuju Beranda" />
 
         </LinearLayout>
 

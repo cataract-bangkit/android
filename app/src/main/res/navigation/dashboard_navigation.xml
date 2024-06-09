@@ -19,6 +19,7 @@
             android:id="@+id/action_detectionFragment_to_resultDetectionFragment"
             app:destination="@id/resultDetectionFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.cataract.detection.dashboard.HistoryFragment"
