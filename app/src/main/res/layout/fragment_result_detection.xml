@@ -25,6 +25,16 @@
         android:src="@drawable/ic_launcher_background" />
 
     <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:text="Cataract Or Not ?" />
+
+    <TextView
+        android:id="@+id/persen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"

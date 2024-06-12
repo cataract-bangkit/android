@@ -1,6 +1,7 @@
 package com.cataract.detection.connection.service
 
 import android.content.Context
+import android.util.Log
 import com.cataract.detection.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -29,6 +30,7 @@ class ApiDashboardService(context: Context) {
 
             token?.let {
                 requestBuilder.addHeader("Authorization", "Bearer $it")
+                Log.d("ApiDashboard", it.toString())
             }
 
             val request = requestBuilder.build()
