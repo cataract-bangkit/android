@@ -43,4 +43,17 @@
     <string name="history_normal_cataract">Normal</string>
     <string name="history_date">Deteksi pada 12/12/2012 12:20</string>
     <string name="detail_history">Detail Riwayat</string>
+    <string name="greetings">Halo, %1s!</string>
+    <string name="greetings_desc">Selalu jaga kesehatan mata ya!</string>
+    <string name="article_for_you">Artikel Untukmu</string>
+    <string name="see_all">Lihat Semua</string>
+    <string name="doctor_pointing_fingers">Doctor pointing fingers</string>
+    <string name="check_eyes_health">Cek kesehatan matamu!</string>
+    <string name="open_detection">Buka pendeteksi katarak</string>
+    <string name="article_image_desc">Article image</string>
+    <string name="placeholder_title">Apa itu Katarak?</string>
+    <string name="placeholder_writer">Admin</string>
+    <string name="popular_article">Artikel Populer</string>
+    <string name="placeholder_desc">Katarak adalah suatu kondisi di mana lensa mata menjadi keruh dan menyebabkan penglihatan menjadi buram.</string>
+    <string name="article_detail">Detail Artikel</string>
 </resources>
