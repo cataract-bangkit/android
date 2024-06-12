@@ -4,16 +4,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center"
+    android:gravity="top|center_horizontal"
     android:orientation="vertical"
-    tools:context=".dashboard.ArticleFragment">
+    android:paddingTop="32dp"
+    android:paddingStart="32dp"
+    tools:context=".dashboard.ArticleFragment"
+    tools:ignore="RtlSymmetry">
 
     <TextView
         android:id="@+id/titlePortrait"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Article Populer" />
+        style="@style/Heading"
+        android:layout_marginBottom="4dp"
+        android:textSize="24sp"
+        android:text="@string/popular_article" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,6 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            tools:listitem="@layout/card_article_portrait"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -33,14 +37,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
     <TextView
         android:id="@+id/titleLandscape"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:text="Article Untukmu" />
+        style="@style/Heading"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        android:text="@string/popular_article" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,12 +54,13 @@
             android:id="@+id/rvArticleLandscape"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingEnd="32dp"
             android:orientation="vertical"
+            tools:listitem="@layout/card_article_landscape"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
