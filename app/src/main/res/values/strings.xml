@@ -38,10 +38,10 @@
     <string name="result">KATARAK/NORMAL</string>
     <string name="result_desc">Deteksi menunjukkan bahwa kondisi mata Anda %1s dengan tingkat kepercayaan %.1f%.</string>
     <string name="history">Riwayat Deteksi</string>
-    <string name="history_title">Pendeteksian %1s</string>
+    <string name="history_title">Pendeteksian</string>
     <string name="history_hasil">Hasil:</string>
     <string name="history_normal_cataract">Normal</string>
-    <string name="history_persentance">Tingkat Akurasi -</string>
+    <string name="history_persentance">Tingkat Akurasi:</string>
     <string name="detail_history">Detail Riwayat</string>
     <string name="greetings">Halo, %1s!</string>
     <string name="greetings_desc">Selalu jaga kesehatan mata ya!</string>
@@ -56,4 +56,5 @@
     <string name="popular_article">Artikel Populer</string>
     <string name="placeholder_desc">Katarak adalah suatu kondisi di mana lensa mata menjadi keruh dan menyebabkan penglihatan menjadi buram.</string>
     <string name="article_detail">Detail Artikel</string>
+    <string name="persen">xx%</string>
 </resources>
