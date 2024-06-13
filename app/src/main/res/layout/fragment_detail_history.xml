@@ -16,10 +16,27 @@
         android:text="Detail History" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"
+        android:text="Cataract Or Not ?" />
+
+    <TextView
+        android:id="@+id/persen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_marginTop="20dp"
+        android:text="Description" />
 
 </LinearLayout>

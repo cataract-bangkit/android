@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:layout_marginTop="20dp"
-        android:text="Cataract Or Not ?" />
+        android:text="Description" />
 
 
 

@@ -33,7 +33,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_gravity="left"
-                android:text="Pendeteksi 12/12/2012" />
+                android:text="Date -" />
 
             <TextView
                 android:id="@+id/item_result"
@@ -41,15 +41,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:layout_gravity="left"
-                android:text="Hasil: Normal" />
+                android:text="Hasil: -" />
 
             <TextView
-                android:id="@+id/item_result_date"
+                android:id="@+id/item_persentance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="10sp"
                 android:layout_gravity="left"
-                android:text="Deteksi pada 12/12/2012 12:20" />
+                android:text="Tingkat Akurasi -" />
 
         </LinearLayout>
 

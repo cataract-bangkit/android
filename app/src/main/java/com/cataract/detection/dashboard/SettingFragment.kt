@@ -37,6 +37,7 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonLogout.setOnClickListener {
+            showToast("Mulai Menghapus Sesi")
             settingViewModel.logout(requireContext())
         }
 
@@ -57,6 +58,8 @@ class SettingFragment : Fragment() {
     }
 
     private fun moveOnAuthentication(){
+        showToast("Berhasil Logout")
+
         val moveOn = Intent(requireContext(), MainActivity::class.java)
         startActivity(moveOn)
         requireActivity().finish()
