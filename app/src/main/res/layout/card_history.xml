@@ -48,10 +48,10 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/item_result_date"
+                android:id="@+id/item_persentance"
                 style="@style/SubHeading"
                 android:textSize="16sp"
-                android:text="@string/history_date" />
+                android:text="@string/history_persentance" />
 
         </LinearLayout>
 

@@ -41,7 +41,7 @@
     <string name="history_title">Pendeteksian %1s</string>
     <string name="history_hasil">Hasil:</string>
     <string name="history_normal_cataract">Normal</string>
-    <string name="history_date">Deteksi pada 12/12/2012 12:20</string>
+    <string name="history_persentance">Tingkat Akurasi -</string>
     <string name="detail_history">Detail Riwayat</string>
     <string name="greetings">Halo, %1s!</string>
     <string name="greetings_desc">Selalu jaga kesehatan mata ya!</string>

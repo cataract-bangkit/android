@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -18,8 +17,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:src="@drawable/preview_image"
         android:contentDescription="@string/img_preview" />
 
@@ -32,6 +31,7 @@
         android:text="@string/result_detection"/>
 
     <TextView
+        android:id="@+id/result"
         style="@style/Heading"
         android:textSize="32sp"
         android:textColor="?attr/colorPrimary"
@@ -39,6 +39,7 @@
         android:text="@string/result"/>
 
     <TextView
+        android:id="@+id/persen"
         style="@style/TextRegular"
         android:text="@string/result_desc"
         android:textSize="16sp"

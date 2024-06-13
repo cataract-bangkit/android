@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cataract.detection.R
-import com.cataract.detection.connection.adapter.ListArticlePortraitAdapter
 import com.cataract.detection.connection.adapter.ListHistoryAdapter
-import com.cataract.detection.connection.model.ListArticleLandscapeModel
-import com.cataract.detection.connection.model.ListArticlePortraitModel
+import com.cataract.detection.connection.model.HistoryModel
 import com.cataract.detection.connection.model.ListHistoryModel
 import com.cataract.detection.databinding.FragmentHistoryBinding
+import com.cataract.detection.viewmodel.HistoryViewModel
 
 class HistoryFragment : Fragment() {
     private var _binding: FragmentHistoryBinding? = null
@@ -22,6 +24,9 @@ class HistoryFragment : Fragment() {
 
     private val listHistoryModel = ArrayList<ListHistoryModel>()
     private lateinit var rvHistory: RecyclerView
+
+    private val historyViewModel: HistoryViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,56 +46,65 @@ class HistoryFragment : Fragment() {
         rvHistory = binding.rvHistory
         rvHistory.setHasFixedSize(true)
 
-        val dataHistory = arrayOf(
-            mapOf(
-                "item_date"        to "Pendeteksi 12/12/2012",
-                "item_result"      to "Hasil: Normal",
-                "item_result_date" to "Dideteksi pada 12/12/2021, 12:00",
-            ),
-            mapOf(
-                "item_date"        to "Pendeteksi 12/12/2012",
-                "item_result"      to "Hasil: Normal",
-                "item_result_date" to "Dideteksi pada 12/12/2021, 12:00",
-            ),
-            mapOf(
-                "item_date"        to "Pendeteksi 12/12/2012",
-                "item_result"      to "Hasil: Normal",
-                "item_result_date" to "Dideteksi pada 12/12/2021, 12:00",
-            ),
-            mapOf(
-                "item_date"        to "Pendeteksi 12/12/2012",
-                "item_result"      to "Hasil: Normal",
-                "item_result_date" to "Dideteksi pada 12/12/2021, 12:00",
-            ),
+        historyViewModel.messageError.observe(viewLifecycleOwner, Observer { message ->
+            message?.let {
+                showToast(it)
+            }
+        })
 
-        )
+        historyViewModel.messageSuccess.observe(viewLifecycleOwner, Observer { message ->
+            message?.let {
+                showToast(it)
+            }
+        })
 
-        insertDataHistoryToModel(dataHistory)
-        showHistory()
+        historyViewModel.listHistory.observe(viewLifecycleOwner, Observer { listHistory ->
+            insertDataHistoryToModel(listHistory)
+            showHistory()
+        })
+
+        if (listHistoryModel.isEmpty()) {
+            historyViewModel.getHistory(requireContext())
+        }
     }
 
-    private fun <T> insertDataHistoryToModel(listDataHistory: Array<Map<String, T>>) {
+    private fun insertDataHistoryToModel(listDataHistory: List<HistoryModel.HistoryItem>) {
+        listHistoryModel.clear()  // Clear the existing data to avoid duplicates
         for (data in listDataHistory) {
-            val history = ListHistoryModel(data["item_date"].toString(), data["item_result"].toString(), data["item_result_date"].toString()  )
+            val history = ListHistoryModel(
+                data.id.toString(),
+                data.result.toString(),
+                data.imgUrl.toString(),
+                data.confidence.toString(),
+                data.predictedAt.toString()
+            )
             listHistoryModel.add(history)
         }
     }
 
-    private fun showHistory(){
+    private fun showHistory() {
         rvHistory.layoutManager = LinearLayoutManager(requireActivity())
-        val listArticleAdapter = ListHistoryAdapter(listHistoryModel)
-        rvHistory.adapter = listArticleAdapter
+        val listHistoryAdapter = ListHistoryAdapter(listHistoryModel)
+        rvHistory.adapter = listHistoryAdapter
 
-        listArticleAdapter.setOnItemClickCallback(object : ListHistoryAdapter.OnItemClickCallback {
+        listHistoryAdapter.setOnItemClickCallback(object : ListHistoryAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ListHistoryModel) {
                 dumpHistory(data)
             }
         })
     }
 
-    private fun dumpHistory(history: ListHistoryModel) {
-        findNavController().navigate(R.id.action_historyFragment_to_detailHistoryFragment)
+    private fun showToast(message: String) {
+        Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun dumpHistory(history: ListHistoryModel) {
+        val bundle = Bundle()
 
+        bundle.putString("image", history.item_img)
+        bundle.putString("result", history.item_result)
+        bundle.putString("persen", history.item_confidence)
+
+        findNavController().navigate(R.id.action_historyFragment_to_detailHistoryFragment, bundle)
+    }
 }

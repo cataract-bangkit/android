@@ -2,12 +2,15 @@ package com.cataract.detection.dashboard
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.cataract.detection.R
 import com.cataract.detection.databinding.FragmentResultDetectionBinding
+import kotlin.math.roundToInt
 
 
 class ResultDetectionFragment : Fragment() {
@@ -30,10 +33,31 @@ class ResultDetectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val uriString = arguments?.getString("image")
+        val uriString   = arguments?.getString("image")
+        val result      = arguments?.getString("result")
+        var persen      = arguments?.getString("persen")
+        var persenToDecimal = persen?.let { stringToDouble(it) }
+        persen = persenToDecimal?.let { toPercentage(it) }
+
         val uri = Uri.parse(uriString)
 
-        binding.imageView.setImageURI(uri)
+        Glide.with(binding.imageView.context)
+            .load(uri)
+            .placeholder(R.drawable.ic_launcher_background)
+            .error(R.drawable.ic_launcher_background)
+            .into(binding.imageView)
+
+        binding.result.setText(result)
+        binding.persen.setText("Terdeteksi ${result?.capitalize()} Dengan Akurasi ${persen}")
+    }
+
+    fun stringToDouble(value: String): Double {
+        return value.toDouble()
+    }
+
+    fun toPercentage(value: Double): String {
+        val percentage = value * 100
+        return "${percentage.roundToInt()}%"
     }
 
 }
