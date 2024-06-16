@@ -2,14 +2,12 @@ package com.cataract.detection.viewmodel
 
 import android.content.Context
 import android.text.Editable
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cataract.detection.connection.endpoint.ApiEndpoint
 import com.cataract.detection.connection.model.RegisterModel
 import com.cataract.detection.connection.service.ApiAuthenticationService
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +21,10 @@ class RegisterViewModel : ViewModel() {
     private val _messageSuccess = MutableLiveData<String>()
     val messageSuccess: LiveData<String> get() = _messageSuccess
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
+
     fun registerUser(
         context: Context,
         name: Editable,
@@ -30,8 +32,10 @@ class RegisterViewModel : ViewModel() {
         phone: Editable,
         password: Editable
     ){
+        _isLoading.postValue(true)
         apiService.register(name.toString(), email.toString(), phone.toString(), password.toString()).enqueue(object :Callback<RegisterModel.Success> {
             override fun onResponse(call: Call<RegisterModel.Success>, response: Response<RegisterModel.Success>) {
+                _isLoading.postValue(false)
                 if (response.isSuccessful) {
                     val successResponse = response.body()
                     if (successResponse != null) {
@@ -61,6 +65,7 @@ class RegisterViewModel : ViewModel() {
             override fun onFailure(call: Call<RegisterModel.Success>, t: Throwable) {
                 // Handle failure
                 // If upload fails, handle it as an unsuccessful response with a default message
+                _isLoading.postValue(false)
                 _messageError.postValue("${t.toString()} Upload unsuccessful: Default error message")
             }
         })

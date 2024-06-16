@@ -2,7 +2,6 @@ package com.cataract.detection.viewmodel
 
 import android.content.Context
 import android.text.Editable
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,14 +23,19 @@ class LoginViewModel : ViewModel() {
     private val _messageSuccess = MutableLiveData<String>()
     val messageSuccess: LiveData<String> get() = _messageSuccess
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     fun login(
         context: Context,
         email: Editable,
         phone: Editable,
         password: Editable
     ){
+        _isLoading.postValue(true)
         apiService.login(email.toString(), phone.toString(), password.toString()).enqueue(object : Callback<LoginModel.Success> {
             override fun onResponse(call: Call<LoginModel.Success>, response: Response<LoginModel.Success>) {
+                _isLoading.postValue(false)
                 if (response.isSuccessful) {
                     val successResponse = response.body()
                     if (successResponse != null) {
@@ -63,6 +67,7 @@ class LoginViewModel : ViewModel() {
             override fun onFailure(call: Call<LoginModel.Success>, t: Throwable) {
                 // Handle failure
                 // If upload fails, handle it as an unsuccessful response with a default message
+                _isLoading.postValue(false)
                 _messageError.postValue("${t.toString()} Request unsuccessful: Default error message")
             }
         })

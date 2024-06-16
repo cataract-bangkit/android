@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.cataract.detection.DashboardActivity
 import com.cataract.detection.R
 import com.cataract.detection.databinding.FragmentLoginBinding
@@ -58,6 +57,10 @@ class LoginFragment : Fragment() {
             }
         })
 
+        loginViewModel.isLoading.observe(requireActivity(), Observer{
+            showLoading(it)
+        })
+
         binding.btnOk.setOnClickListener {
             binding.alertSuccess.visibility = View.GONE
             val moveOn = Intent(requireContext(), DashboardActivity::class.java)
@@ -70,4 +73,7 @@ class LoginFragment : Fragment() {
         Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
     }
 
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
 }

@@ -55,6 +55,10 @@ class RegisterFragment : Fragment() {
             }
         })
 
+        registerViewModel.isLoading.observe(requireActivity(), Observer{
+            showLoading(it)
+        })
+
         binding.btnOk.setOnClickListener {
             binding.alertSuccess.visibility = View.GONE
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
@@ -66,5 +70,7 @@ class RegisterFragment : Fragment() {
         Toast.makeText(requireActivity(), message, Toast.LENGTH_SHORT).show()
     }
 
-
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
 }
