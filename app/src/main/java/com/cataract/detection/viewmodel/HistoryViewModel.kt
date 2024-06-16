@@ -21,11 +21,16 @@ class HistoryViewModel : ViewModel() {
     private val _listHistory = MutableLiveData<List<HistoryModel.HistoryItem>>()
     val listHistory: LiveData<List<HistoryModel.HistoryItem>> get() = _listHistory
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> get() = _isLoading
+
     fun getHistory(context: Context) {
+        _isLoading.postValue(true)
         val apiService = ApiDashboardService(context).retrofit.create(ApiEndpoint::class.java)
 
         apiService.getHistories().enqueue(object : Callback<HistoryModel.Success> {
             override fun onResponse(call: Call<HistoryModel.Success>, response: Response<HistoryModel.Success>) {
+                _isLoading.postValue(false)
                 if (response.isSuccessful) {
                     val successResponse = response.body()
                     if (successResponse?.data != null) {

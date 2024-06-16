@@ -66,6 +66,10 @@ class HistoryFragment : Fragment() {
         if (listHistoryModel.isEmpty()) {
             historyViewModel.getHistory(requireContext())
         }
+
+        historyViewModel.isLoading.observe(requireActivity(), Observer{
+            showLoading(it)
+        })
     }
 
     private fun insertDataHistoryToModel(listDataHistory: List<HistoryModel.HistoryItem>) {
@@ -106,5 +110,9 @@ class HistoryFragment : Fragment() {
         bundle.putString("persen", history.item_confidence)
 
         findNavController().navigate(R.id.action_historyFragment_to_detailHistoryFragment, bundle)
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 }
