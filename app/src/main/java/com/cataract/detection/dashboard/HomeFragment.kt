@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cataract.detection.R
@@ -35,6 +36,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         rvArticlePortrait = binding.rvArticlePortrait
         rvArticlePortrait.setHasFixedSize(true)
+
+        binding.openDetection.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_detectionFragment)
+        }
+
+        binding.openArticle.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_articleFragment)
+        }
 
         val dataArticlePortrait = arrayOf(
             mapOf(

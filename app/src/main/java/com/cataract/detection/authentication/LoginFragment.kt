@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.cataract.detection.DashboardActivity
 import com.cataract.detection.R
 import com.cataract.detection.databinding.FragmentLoginBinding
@@ -66,6 +67,10 @@ class LoginFragment : Fragment() {
             val moveOn = Intent(requireContext(), DashboardActivity::class.java)
             startActivity(moveOn)
             requireActivity().finishAffinity()
+        }
+
+        binding.redirectToRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
     }
 

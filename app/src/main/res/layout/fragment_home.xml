@@ -87,6 +87,7 @@
                 android:textSize="24sp" />
 
             <TextView
+                android:id="@+id/open_article"
                 style="@style/TextRegular"
                 android:layout_height="match_parent"
                 android:layout_width="wrap_content"

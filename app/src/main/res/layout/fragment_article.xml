@@ -47,7 +47,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="8dp"
             android:textSize="24sp"
-            android:text="@string/popular_article" />
+            android:text="@string/personalized_article" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvArticleLandscape"

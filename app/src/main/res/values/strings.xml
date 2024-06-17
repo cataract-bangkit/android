@@ -12,14 +12,14 @@
     <string name="hint_password">Masukkan kata sandi</string>
     <string name="konfirmasi_kata_sandi">Konfirmasi Kata Sandi</string>
     <string name="hint_konfirmasi_kata_sandi">Konfirmasi kata sandi</string>
-    <string name="login_redirect">Sudah memiliki akun? Login</string>
+    <string name="login_redirect">Sudah memiliki akun?</string>
     <string name="alert_register">Registrasi Berhasil</string>
     <string name="subheading_alert_register">Anda berhasil membuat akun baru</string>
     <string name="to_home">Menuju Beranda</string>
     <string name="masuk">Masuk</string>
     <string name="login">Login</string>
     <string name="subheading_login">Silakan masuk dengan akun yang telah terdaftar</string>
-    <string name="register_redirect">Belum memiliki akun? Register</string>
+    <string name="register_redirect">Belum memiliki akun?</string>
     <string name="alert_login">Login Berhasil</string>
     <string name="subheading_alert_login">Selamat, Anda telah berhasil masuk</string>
     <string name="hint_email">example@gmail.com</string>
@@ -43,7 +43,7 @@
     <string name="history_normal_cataract">Normal</string>
     <string name="history_persentance">Tingkat Akurasi:</string>
     <string name="detail_history">Detail Riwayat</string>
-    <string name="greetings">Halo, %1s!</string>
+    <string name="greetings">Halo,</string>
     <string name="greetings_desc">Selalu jaga kesehatan mata ya!</string>
     <string name="article_for_you">Artikel Untukmu</string>
     <string name="see_all">Lihat Semua</string>
@@ -54,6 +54,7 @@
     <string name="placeholder_title">Apa itu Katarak?</string>
     <string name="placeholder_writer">Admin</string>
     <string name="popular_article">Artikel Populer</string>
+    <string name="personalized_article">Artikel Untukmu</string>
     <string name="placeholder_desc">Katarak adalah suatu kondisi di mana lensa mata menjadi keruh dan menyebabkan penglihatan menjadi buram.</string>
     <string name="article_detail">Detail Artikel</string>
     <string name="persen">xx%</string>
