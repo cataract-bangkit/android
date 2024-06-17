@@ -3,10 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="?attr/colorSurfaceContainer"
     android:gravity="center"
-    android:padding="32dp"
+    android:orientation="vertical"
     tools:context=".onboarding.SplashScreen1Fragment">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="32dp"
+        android:background="?attr/colorSurfaceContainer"
+        android:contentDescription="@string/onboarding_background"
+        android:src="@drawable/onboard" />
 
     <TextView
         style="@style/Heading"
@@ -25,7 +33,6 @@
         android:id="@+id/progressBar"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:visibility="visible" />

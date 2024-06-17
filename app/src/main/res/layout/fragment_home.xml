@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="top|center_horizontal"
-    android:padding="32dp"
+    android:layout_marginVertical="32dp"
     tools:context=".dashboard.HomeFragment">
 
     <LinearLayout
@@ -17,17 +17,20 @@
             android:id="@+id/textView"
             style="@style/Heading"
             android:text="@string/greetings"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:layout_marginHorizontal="32dp"/>
 
         <TextView
             style="@style/SubHeading"
             android:text="@string/greetings_desc"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginHorizontal="32dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginTop="12dp">
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="32dp">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -77,7 +80,8 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="4dp">
+            android:layout_marginBottom="4dp"
+            android:layout_marginHorizontal="32dp">
 
             <TextView
                 style="@style/Heading"
@@ -103,6 +107,7 @@
             android:id="@+id/rvArticlePortrait"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/card_article_portrait"/>

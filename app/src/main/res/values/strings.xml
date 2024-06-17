@@ -58,4 +58,5 @@
     <string name="placeholder_desc">Katarak adalah suatu kondisi di mana lensa mata menjadi keruh dan menyebabkan penglihatan menjadi buram.</string>
     <string name="article_detail">Detail Artikel</string>
     <string name="persen">xx%</string>
+    <string name="onboarding_background">medical equipment background</string>
 </resources>
