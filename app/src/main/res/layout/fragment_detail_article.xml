@@ -1,25 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
+    android:gravity="top|center_horizontal"
+    android:padding="32dp"
     tools:context=".dashboard.DetailArticleFragment">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:orientation="vertical">
+
+    <TextView
+        style="@style/Heading"
         android:textAlignment="center"
-        android:text="Detail Article" />
+        android:textSize="30sp"
+        android:text="@string/article_detail"
+        android:layout_marginBottom="20dp"/>
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/ic_launcher_background" />
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/preview_image"
+        android:contentDescription="@string/img_preview" />
 
-</LinearLayout>
+    <TextView
+        style="@style/Heading"
+        android:textSize="30sp"
+        android:text="@string/placeholder_title" />
+
+    <TextView
+        style="@style/SubHeading"
+        android:textSize="24sp"
+        android:text="@string/placeholder_writer"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        style="@style/TextRegular"
+        android:text="@string/placeholder_desc"
+        android:textSize="16sp"
+        android:layout_marginBottom="64dp" />
+
+    </LinearLayout>
+
+</ScrollView>

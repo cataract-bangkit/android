@@ -3,6 +3,8 @@ package com.cataract.detection.dashboard
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -11,23 +13,37 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.cataract.detection.AuthenticationActivity
 import com.cataract.detection.R
+import com.cataract.detection.connection.model.DetectionModel
 import com.cataract.detection.databinding.FragmentDetectionBinding
+import com.cataract.detection.viewmodel.DetectionViewModel
+import com.cataract.detection.viewmodel.LoginViewModel
 import com.yalantis.ucrop.UCrop
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
+import java.io.InputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import kotlin.random.Random
 
 class DetectionFragment : Fragment() {
     private var _binding: FragmentDetectionBinding? = null
@@ -35,15 +51,18 @@ class DetectionFragment : Fragment() {
 
     private var croppedImageUri: Uri? = null
 
+    private var resultPrediction: DetectionModel.Result? = null
+
     private val CAMERA_PERMISSION_CODE  = 101
     private val STORAGE_PERMISSION_CODE = 102
+
+    private val detectionViewModel: DetectionViewModel by viewModels()
 
     private val launcherIntentGallery =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val selectedImageUri = result.data?.data
                 selectedImageUri?.let { uri ->
-                    Log.d(TAG, uri.toString())
                     startUCrop(uri)
                 }
             }
@@ -83,17 +102,56 @@ class DetectionFragment : Fragment() {
             startCamera()
         }
 
+        // Flag untuk mengatur apakah tombol sudah diklik atau belum
+        var isProcessing = false
+
         binding.deteksi.setOnClickListener {
-            loading(true)
-            Handler(Looper.getMainLooper()).postDelayed({
+            if (!isProcessing) {
+                isProcessing = true
 
-                val bundle = Bundle()
-                bundle.putString("image", croppedImageUri.toString())
+                loading(true)
 
-                findNavController().navigate(R.id.action_detectionFragment_to_resultDetectionFragment, bundle)
-                loading(false)
-            }, 2000)
+                croppedImageUri?.let {
+                    showToast("Memulai Prediksi")
+                    partImage(it)
+                }
+
+                detectionViewModel.resultPrediction.observe(requireActivity(), Observer { message ->
+                    message?.let {
+                        showToast("Berhasil Diprediksi, Pindah Ke Result")
+
+                        resultPrediction = it
+
+                        val bundle = Bundle()
+                        bundle.putString("image", resultPrediction?.imgUrl.toString())
+                        bundle.putString("result", resultPrediction?.result.toString())
+                        bundle.putString("persen", resultPrediction?.confidence.toString())
+
+                        findNavController().navigate(R.id.action_detectionFragment_to_resultDetectionFragment, bundle)
+
+                        loading(false)
+                        isProcessing = false  // Mengatur flag bahwa proses selesai
+                    }
+                })
+            } else {
+                showToast("Proses Sedang Berlangsung")
+            }
         }
+
+
+        detectionViewModel.messageError.observe(requireActivity(), Observer{ message ->
+            message?.let {
+                showToast(it)
+            }
+        })
+
+        detectionViewModel.messageSuccess.observe(requireActivity(), Observer{ message ->
+            message?.let {
+                showToast(it)
+            }
+        })
+
+
     }
 
     private fun startGallery() {
@@ -165,10 +223,72 @@ class DetectionFragment : Fragment() {
         val destinationFileName = "UCrop_" + System.currentTimeMillis()
         val destinationUri = Uri.fromFile(File(requireActivity().cacheDir, "$destinationFileName.jpg"))
         UCrop.of(sourceUri, destinationUri)
-            .withAspectRatio(1f, 1f)
+            .withAspectRatio(16f, 9f)
+            .withMaxResultSize(1280, 720)
+            .withOptions(getUCropOptions())
             .start(requireActivity(), this)
     }
 
+    private fun getUCropOptions(): UCrop.Options {
+        val options = UCrop.Options()
+        options.setCompressionQuality(100)
+        options.setFreeStyleCropEnabled(true)
+        options.setHideBottomControls(true)
+        options.setCompressionFormat(Bitmap.CompressFormat.JPEG)
+        options.withAspectRatio(16f, 9f)
+        return options
+    }
+
+
+    private fun covertUriToByteArray(image: Uri): ByteArray? {
+        var inputStream: InputStream? = null
+
+        try {
+            inputStream = requireContext().contentResolver.openInputStream(image)
+            if (inputStream != null) {
+                return inputStream.readBytes()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            inputStream?.close()
+        }
+
+        return null
+    }
+
+    private fun partImage(image: Uri){
+        var image = covertUriToByteArray(image)?.let { image(it, randomName() + ".${getFileExtension(requireContext(), image).toString()}", "image") }
+        if (image != null) {
+            detectionViewModel.prediction(
+                requireContext(),
+                image
+            )
+        }
+    }
+
+    private fun getFileExtension(context: Context, uri: Uri): String? {
+        return if (uri.scheme == ContentResolver.SCHEME_CONTENT) {
+            val mimeType = context.contentResolver.getType(uri)
+            MimeTypeMap.getSingleton().getExtensionFromMimeType(mimeType)
+        } else {
+            val path = uri.path
+            path?.substringAfterLast('.', null.toString())
+        }
+    }
+
+    private fun image(image: ByteArray, filename: String, field: String): MultipartBody.Part {
+        return MultipartBody.Part.createFormData(field, filename, image.toRequestBody("image/jpeg".toMediaType()))
+    }
+
+    private fun randomName(): String {
+        val currentDateTime = LocalDateTime.now()
+        val timestamp = currentDateTime.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"))
+        val randomChars = ('a'..'z') + ('A'..'Z') + ('0'..'9')
+        val randomString = (1..5).map { randomChars.random() }.joinToString("")
+        val randomNumber = Random.nextInt(100, 1000) // Angka acak antara 100 dan 999
+        return "bitlab_$timestamp$randomString$randomNumber"
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)

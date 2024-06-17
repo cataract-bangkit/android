@@ -1,59 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="4dp"
-    card_view:cardCornerRadius="4dp">
+    android:layout_margin="4dp"
+    card_view:cardCornerRadius="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp">
-
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_margin="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginStart="8dp">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/Heading"
+                android:layout_width="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/history_title" />
 
             <TextView
                 android:id="@+id/item_date"
+                style="@style/Heading"
+                android:layout_marginStart="4dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:text="@string/history_normal_cataract" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="4dp">
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:layout_gravity="left"
-                android:text="Pendeteksi 12/12/2012" />
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="16sp"
+                android:text="@string/history_hasil" />
 
             <TextView
                 android:id="@+id/item_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:layout_gravity="left"
-                android:text="Hasil: Normal" />
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/outfit_bold"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="16sp"
+                android:text="@string/history_normal_cataract" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/item_result_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:layout_gravity="left"
-                android:text="Deteksi pada 12/12/2012 12:20" />
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="16sp"
+                android:text="@string/history_persentance" />
+
+            <TextView
+                android:id="@+id/item_persentance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/outfit_regular"
+                android:textSize="16sp"
+                android:text="@string/persen" />
 
         </LinearLayout>
 
     </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>

@@ -5,41 +5,50 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import com.cataract.detection.databinding.ActivityMainBinding
 import androidx.navigation.findNavController
+import com.bumptech.glide.load.DataSource
+import com.cataract.detection.viewmodel.MainViewModel
+
 class MainActivity : AppCompatActivity() {
 
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
+    private val mainViewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        _binding = ActivityMainBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            val moveOn = Intent(this@MainActivity, AuthenticationActivity::class.java)
-            startActivity(moveOn)
-            finishAffinity()
-        }, 5000)
-    }
+        mainViewModel.loggedIn.observe(this, Observer { setupComplete ->
+            if (setupComplete) {
+                handleUserLoggedIn()
+            } else {
+                _binding = ActivityMainBinding.inflate(layoutInflater)
+                val view = binding.root
+                setContentView(view)
 
-    private fun handleNoNetwork(){
-        // Todo: Lakukan sesuatu jika jaringan tidak tersedia
-    }
+                handleUserNotLoggedIn()
+            }
+        })
 
-    private fun handleNetworkAvailable(){
-        // Todo: Lakukan sesuatu jika jaringan tersedia
+        mainViewModel.isUserLoggedIn(this)
+
     }
 
     private fun handleUserNotLoggedIn(){
-        // Todo: Lakukan sesuatu jika user tidak berhasil login
+        val moveOn = Intent(this@MainActivity, AuthenticationActivity::class.java)
+        startActivity(moveOn)
+        finish()
     }
 
     private fun handleUserLoggedIn(){
-        // Todo: Lakukan sesuatu jika user berhasil login
+        val moveOn = Intent(this@MainActivity, DashboardActivity::class.java)
+        startActivity(moveOn)
+        finish()
     }
 
     private fun handleDarkTheme(){
