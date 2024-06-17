@@ -38,6 +38,41 @@
             app:layout_constraintEnd_toEndOf="parent"
             tools:listitem="@layout/card_history" />
 
+        <LinearLayout
+            android:id="@+id/no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="610dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:src="@drawable/no_data"
+                android:contentDescription="@string/no_data" />
+
+            <TextView
+                style="@style/TextSemiBold"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="@string/no_history" />
+
+            <TextView
+                android:id="@+id/open_detection"
+                style="@style/TextRegular"
+                android:textColor="?attr/colorPrimary"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp"
+                android:text="@string/open_detection_from_history" />
+
+        </LinearLayout>
+
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyle"

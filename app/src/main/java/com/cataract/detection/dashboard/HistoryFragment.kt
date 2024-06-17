@@ -60,6 +60,7 @@ class HistoryFragment : Fragment() {
 
         historyViewModel.listHistory.observe(viewLifecycleOwner, Observer { listHistory ->
             insertDataHistoryToModel(listHistory)
+            checkSize(listHistory)
             showHistory()
         })
 
@@ -113,6 +114,22 @@ class HistoryFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        _binding?.let {
+            it.noData.visibility = View.GONE
+            it.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun checkSize(listDataHistory: List<HistoryModel.HistoryItem>) {
+        _binding?.let {
+            if (listDataHistory.isEmpty()) {
+                it.noData.visibility = View.VISIBLE
+                it.openDetection.setOnClickListener {
+                    findNavController().navigate(R.id.action_historyFragment_to_detectionFragment)
+                }
+            } else {
+                it.noData.visibility = View.GONE
+            }
+        }
     }
 }

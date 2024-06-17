@@ -59,4 +59,7 @@
     <string name="article_detail">Detail Artikel</string>
     <string name="persen">xx%</string>
     <string name="onboarding_background">medical equipment background</string>
+    <string name="no_data">Tidak ada data</string>
+    <string name="no_history">Belum ada riwayat deteksi</string>
+    <string name="open_detection_from_history">Buka pendeteksi katarak</string>
 </resources>

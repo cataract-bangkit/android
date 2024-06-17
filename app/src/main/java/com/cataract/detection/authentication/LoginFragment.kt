@@ -46,19 +46,19 @@ class LoginFragment : Fragment() {
             )
         }
 
-        loginViewModel.messageError.observe(requireActivity(), Observer{ message ->
+        loginViewModel.messageError.observe(viewLifecycleOwner, Observer{ message ->
             message?.let {
                 showToast(it)
             }
         })
 
-        loginViewModel.messageSuccess.observe(requireActivity(), Observer{ message ->
+        loginViewModel.messageSuccess.observe(viewLifecycleOwner, Observer{ message ->
             message?.let {
                 binding.alertSuccess.visibility = View.VISIBLE
             }
         })
 
-        loginViewModel.isLoading.observe(requireActivity(), Observer{
+        loginViewModel.isLoading.observe(viewLifecycleOwner, Observer{
             showLoading(it)
         })
 
@@ -79,6 +79,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        _binding?.let {
+            it.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
     }
 }

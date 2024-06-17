@@ -43,19 +43,19 @@ class RegisterFragment : Fragment() {
             )
         }
 
-        registerViewModel.messageError.observe(requireActivity(), Observer{ message ->
+        registerViewModel.messageError.observe(viewLifecycleOwner, Observer{ message ->
             message?.let {
                 showToast(it)
             }
         })
 
-        registerViewModel.messageSuccess.observe(requireActivity(), Observer{ message ->
+        registerViewModel.messageSuccess.observe(viewLifecycleOwner, Observer{ message ->
             message?.let {
                 binding.alertSuccess.visibility = View.VISIBLE
             }
         })
 
-        registerViewModel.isLoading.observe(requireActivity(), Observer{
+        registerViewModel.isLoading.observe(viewLifecycleOwner, Observer{
             showLoading(it)
         })
 
@@ -75,6 +75,8 @@ class RegisterFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        _binding?.let {
+            it.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
     }
 }
