@@ -62,4 +62,9 @@
     <string name="no_data">Tidak ada data</string>
     <string name="no_history">Belum ada riwayat deteksi</string>
     <string name="open_detection_from_history">Buka pendeteksi katarak</string>
+    <string name="setting">Setting</string>
+    <string name="theme">Tema Aplikasi</string>
+    <string name="logout_from_account">Keluar dari akun</string>
+    <string name="logout">Logout</string>
+    <string name="change_theme">Ganti tema aplikasi</string>
 </resources>

@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:alpha="0.4"
         android:background="?attr/colorSurfaceContainer"
         android:contentDescription="@string/onboarding_background"
         android:src="@drawable/background_splash" />
@@ -26,7 +27,8 @@
             style="@style/Heading"
             android:text="@string/project_title"
             android:textAlignment="center"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textColor="?attr/colorPrimary" />
 
         <TextView
             style="@style/SubHeading"

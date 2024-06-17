@@ -7,12 +7,20 @@
     android:orientation="vertical"
     tools:context=".dashboard.SettingFragment">
 
+    <TextView
+        android:id="@+id/textView"
+        style="@style/Heading"
+        android:text="@string/setting"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:paddingTop="32dp"
+        android:paddingBottom="8dp" />
+
     <LinearLayout
-        android:id="@+id/buttonThema"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,10 +29,11 @@
             android:layout_marginBottom="20dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextSemiBold"
+                android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Bagaimana Cara Mengganti Thema ?" />
+                android:textSize="16sp"
+                android:text="@string/theme" />
 
         </LinearLayout>
 
@@ -33,43 +42,40 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="6dp">
 
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/palette_24px"/>
+                android:src="@drawable/palette_24px"
+                android:contentDescription="@string/theme" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginLeft="20dp">
+                android:layout_marginStart="20dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thema Aplikasi"
-                    android:textSize="15sp"
+                    style="@style/TextRegular"
+                    android:text="@string/theme"
+                    android:textSize="16sp"
                     android:layout_weight="1"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Thema Aplikasi"
-                    android:textSize="10sp"
+                    style="@style/TextRegular"
+                    android:text="@string/change_theme"
+                    android:textSize="14sp"
                     android:layout_weight="1"
                     android:layout_marginTop="5dp"/>
 
             </LinearLayout>
 
-
-
-            <ImageView
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/buttonTheme"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/chevron_right_24px" />
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -89,10 +95,10 @@
             android:layout_marginBottom="20dp">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextSemiBold"
                 android:layout_weight="1"
-                android:text="Bagaimana Cara Keluar Dari Aplikasi ?" />
+                android:textSize="16sp"
+                android:text="@string/logout_from_account" />
 
         </LinearLayout>
 
@@ -106,31 +112,29 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/logout_24px"/>
+                android:src="@drawable/logout_24px"
+                android:contentDescription="@string/logout" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical"
-                android:layout_marginLeft="20dp">
+                android:layout_marginStart="20dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Logout"
-                    android:textSize="15sp"
+                    style="@style/TextRegular"
+                    android:text="@string/logout"
+                    android:textSize="16sp"
                     android:layout_weight="1"/>
 
-
             </LinearLayout>
-
-
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/chevron_right_24px" />
+                android:src="@drawable/chevron_right_24px"
+                android:contentDescription="@string/logout" />
 
         </LinearLayout>
 
