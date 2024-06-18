@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -73,6 +74,10 @@ dependencies {
 
     // Ucrop
     implementation("com.github.yalantis:ucrop:2.2.8-native")
+
+    // Room
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.room.compiler)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

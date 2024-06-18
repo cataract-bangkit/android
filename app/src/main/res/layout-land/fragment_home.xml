@@ -98,7 +98,7 @@
                     style="@style/Heading"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="@string/article_for_you"
+                    android:text="@string/popular_article"
                     android:textSize="20sp" />
 
                 <TextView

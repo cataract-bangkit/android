@@ -42,12 +42,12 @@ class DetailHistoryFragment : Fragment() {
 
         Glide.with(binding.imageView.context)
             .load(uri)
-            .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_background)
+            .placeholder(R.drawable.preview_image)
+            .error(R.drawable.preview_image)
             .into(binding.imageView)
 
-        binding.result.setText(result)
-        binding.persen.setText("Terdeteksi ${result?.capitalize()} Dengan Akurasi ${persen}")
+        binding.result.text = result
+        binding.persen.text = "Deteksi menunjukkan bahwa kondisi mata Anda ${result} dengan tingkat akurasi ${persen}."
     }
 
     fun stringToDouble(value: String): Double {
