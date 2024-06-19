@@ -24,7 +24,7 @@
             <TextView
                 style="@style/Heading"
                 android:layout_width="wrap_content"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:text="@string/history_title" />
 
@@ -32,7 +32,7 @@
                 android:id="@+id/item_date"
                 style="@style/Heading"
                 android:layout_marginStart="4dp"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 android:text="@string/history_normal_cataract" />
 
