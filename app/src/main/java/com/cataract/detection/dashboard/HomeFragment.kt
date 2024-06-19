@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cataract.detection.R
 import com.cataract.detection.connection.adapter.ListArticlePortraitAdapter
 import com.cataract.detection.connection.model.ArticleModel
+import com.cataract.detection.connection.service.PreferencesService
 import com.cataract.detection.databinding.FragmentHomeBinding
 import com.cataract.detection.viewmodel.HomeViewModel
 import com.cataract.detection.viewmodel.ViewModelFactory
@@ -23,6 +24,7 @@ class HomeFragment : Fragment() {
 
     private var articlePortrait = ArrayList<ArticleModel>()
     private lateinit var rvArticlePortrait: RecyclerView
+    private lateinit var preferencesService: PreferencesService
 
     private val homeViewModel by viewModels<HomeViewModel> {
         ViewModelFactory.getInstance((activity as AppCompatActivity).application)
@@ -44,6 +46,10 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvArticlePortrait = binding.rvArticlePortrait
+        preferencesService = PreferencesService(requireContext())
+        val userName = preferencesService.getName()
+
+        binding.textView.setText("Hello, ${userName}")
 
         binding.openDetection.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_detectionFragment)

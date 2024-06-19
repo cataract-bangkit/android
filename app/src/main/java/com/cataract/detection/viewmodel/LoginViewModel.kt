@@ -2,11 +2,14 @@ package com.cataract.detection.viewmodel
 
 import android.content.Context
 import android.text.Editable
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.auth0.android.jwt.JWT
 import com.cataract.detection.connection.endpoint.ApiEndpoint
 import com.cataract.detection.connection.model.LoginModel
+import com.cataract.detection.connection.model.UserModel
 import com.cataract.detection.connection.service.ApiAuthenticationService
 import com.cataract.detection.connection.service.PreferencesService
 import retrofit2.Call
@@ -73,14 +76,58 @@ class LoginViewModel : ViewModel() {
     }
 
     fun saveSession(context: Context, sessionData: LoginModel.Success) {
-        val result = PreferencesService(context).setUser(sessionData.data)
+        val result = PreferencesService(context).setToken(sessionData.data)
 
-        if (result) {
-            _messageSuccess.postValue("Berhasil Login")
-        } else {
+        if (!result) {
             _messageError.postValue("Ada Masalah Pada Saat Ingin Menyimpan User Login")
         }
+
+        val token = sessionData.data?.token
+
+        var resultDecode = token?.let {
+            decodeJWT(it)
+        }
+
+        val resultName = PreferencesService(context).setName(resultDecode?.name.toString())
+
+        if (resultName) {
+            _messageSuccess.postValue("Berhasil Login")
+        } else {
+            _messageError.postValue("Anda Mendaftar Akun, Namun Tidak Memasukan Nama, ada masalah dengan Nama akun anda")
+        }
+
+
     }
+
+    fun decodeJWT(token: String): UserModel.Fillable? {
+        return try {
+
+            val jwt = JWT(token)
+
+            val id          = jwt.getClaim("id").asString()
+            val sub         = jwt.getClaim("sub").asString()
+            val name        = jwt.getClaim("name").asString()
+            val email       = jwt.getClaim("email").asString()
+            val phone       = jwt.getClaim("phone").asString()
+            val issuedAt    = jwt.issuedAt
+            val expiresAt   = jwt.expiresAt
+
+            UserModel.Fillable(
+                id          = id,
+                sub         = sub,
+                name        = name,
+                email       = email,
+                phone       = phone,
+                issuedAt    = issuedAt,
+                expiresAt   = expiresAt
+            )
+
+        } catch (exception: Exception) {
+            _messageError.postValue("Invalid JWT: ${exception.message}")
+            null
+        }
+    }
+
 
     companion object{
         private val TAG = "LoginViewModel"

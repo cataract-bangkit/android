@@ -8,10 +8,21 @@ import kotlinx.coroutines.flow.StateFlow
 internal class PreferencesService(context: Context) {
     private val preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
 
-    fun setUser(data: LoginModel.Data?): Boolean {
+    fun setToken(data: LoginModel.Data?): Boolean {
         return if (data != null) {
             val editor = preferences.edit()
             editor.putString("user-login-token",  data.token)
+            editor.apply()
+            true
+        } else {
+            false
+        }
+    }
+
+    fun setName(name: String): Boolean {
+        return if (name != null) {
+            val editor = preferences.edit()
+            editor.putString("user-login-name",  name)
             editor.apply()
             true
         } else {
@@ -32,6 +43,10 @@ internal class PreferencesService(context: Context) {
 
     fun getUserToken(): String? {
         return preferences.getString("user-login-token", null)
+    }
+
+    fun getName(): String? {
+        return preferences.getString("user-login-name", null)
     }
 
     fun getThemeSetting(): StateFlow<Boolean> {
