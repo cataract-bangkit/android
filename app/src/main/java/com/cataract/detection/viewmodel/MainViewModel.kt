@@ -15,10 +15,4 @@ class MainViewModel : ViewModel() {
         val isLogin = PreferencesService(context).getUserToken()
         _loggedIn.postValue(!isLogin.isNullOrEmpty())
     }
-
-    fun isDarkOrLightTheme(){
-        // Todo: Melakukan check Thema Aplikasi.
-    }
-
-
 }

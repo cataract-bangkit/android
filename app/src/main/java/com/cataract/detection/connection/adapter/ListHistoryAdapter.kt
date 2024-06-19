@@ -21,7 +21,7 @@ class ListHistoryAdapter(private val dataArray: ArrayList<ListHistoryModel>) : R
     class ListViewHolder(val binding: CardHistoryBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val (item_id, item_result, item_img, item_confidence, item_predictedAt) = dataArray[position]
+        val (_, item_result, _, item_confidence, item_predictedAt) = dataArray[position]
 
         var persenToDecimal = item_confidence?.let { stringToDouble(it) }
         var persen = persenToDecimal?.let { toPercentage(it) }

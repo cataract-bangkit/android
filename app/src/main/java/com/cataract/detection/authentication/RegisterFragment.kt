@@ -43,19 +43,19 @@ class RegisterFragment : Fragment() {
             )
         }
 
-        registerViewModel.messageError.observe(requireActivity(), Observer{ message ->
+        registerViewModel.messageError.observe(viewLifecycleOwner, Observer{ message ->
             message?.let {
                 showToast(it)
             }
         })
 
-        registerViewModel.messageSuccess.observe(requireActivity(), Observer{ message ->
+        registerViewModel.messageSuccess.observe(viewLifecycleOwner, Observer{ message ->
             message?.let {
                 binding.alertSuccess.visibility = View.VISIBLE
             }
         })
 
-        registerViewModel.isLoading.observe(requireActivity(), Observer{
+        registerViewModel.isLoading.observe(viewLifecycleOwner, Observer{
             showLoading(it)
         })
 
@@ -64,6 +64,10 @@ class RegisterFragment : Fragment() {
             findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             showToast("Akun Berhasil Dibuat Silahkan Login")
         }
+
+        binding.redirectToLogin.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
     }
 
     private fun showToast(message: String) {
@@ -71,6 +75,8 @@ class RegisterFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        _binding?.let {
+            it.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
     }
 }

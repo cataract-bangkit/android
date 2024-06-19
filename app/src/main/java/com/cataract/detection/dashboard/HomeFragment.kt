@@ -4,19 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cataract.detection.R
 import com.cataract.detection.connection.adapter.ListArticlePortraitAdapter
-import com.cataract.detection.connection.model.ListArticlePortraitModel
+import com.cataract.detection.connection.model.ArticleModel
 import com.cataract.detection.databinding.FragmentHomeBinding
+import com.cataract.detection.viewmodel.HomeViewModel
+import com.cataract.detection.viewmodel.ViewModelFactory
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private val listArticlePortraitModel  = ArrayList<ListArticlePortraitModel>()
+
+    private var articlePortrait = ArrayList<ArticleModel>()
     private lateinit var rvArticlePortrait: RecyclerView
+
+    private val homeViewModel by viewModels<HomeViewModel> {
+        ViewModelFactory.getInstance((activity as AppCompatActivity).application)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,51 +44,37 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvArticlePortrait = binding.rvArticlePortrait
-        rvArticlePortrait.setHasFixedSize(true)
 
-        val dataArticlePortrait = arrayOf(
-            mapOf(
-                "photo" to R.drawable.preview_image,
-                "title" to "Apa Itu Katarak?",
-            ),
-            mapOf(
-                "photo" to R.drawable.preview_image,
-                "title" to "Apa Itu Katarak?"
-            ),
-            mapOf(
-                "photo" to R.drawable.preview_image,
-                "title" to "Apa Itu Katarak?"
-            ),
-            mapOf(
-                "photo" to R.drawable.preview_image,
-                "title" to "Apa Itu Katarak?"
-            ),
-        )
+        binding.openDetection.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_detectionFragment)
+        }
 
-        insertDataInModelPortrait(dataArticlePortrait)
-        showArticlePortrait()
-    }
+        binding.openArticle.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_articleFragment)
+        }
 
-    private fun <T> insertDataInModelPortrait(listDataPortrait: Array<Map<String, T>>) {
-        for (data in listDataPortrait) {
-            val article = ListArticlePortraitModel(data["photo"] as Int, data["title"].toString() )
-            listArticlePortraitModel.add(article)
+        homeViewModel.getPortraitArticles().observe(viewLifecycleOwner) {
+            articlePortrait.clear()
+            articlePortrait.addAll(it)
+            showArticlePortrait()
         }
     }
 
     private fun showArticlePortrait(){
+        val listArticleAdapter = ListArticlePortraitAdapter(articlePortrait)
         rvArticlePortrait.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
-        val listArticleAdapter = ListArticlePortraitAdapter(listArticlePortraitModel)
         rvArticlePortrait.adapter = listArticleAdapter
 
         listArticleAdapter.setOnItemClickCallback(object : ListArticlePortraitAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: ListArticlePortraitModel) {
-                showArticlePortrait(data)
+            override fun onItemClicked(data: ArticleModel) {
+                showArticle(data)
             }
         })
     }
 
-    private fun showArticlePortrait(article: ListArticlePortraitModel) {
-        // TODO
+    private fun showArticle(data: ArticleModel) {
+        val bundle = Bundle()
+        bundle.putParcelable("article", data)
+        findNavController().navigate(R.id.action_homeFragment_to_detailArticleFragment, bundle)
     }
 }

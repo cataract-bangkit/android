@@ -2,6 +2,8 @@ package com.cataract.detection.connection.service
 
 import android.content.Context
 import com.cataract.detection.connection.model.LoginModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 internal class PreferencesService(context: Context) {
     private val preferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -30,6 +32,16 @@ internal class PreferencesService(context: Context) {
 
     fun getUserToken(): String? {
         return preferences.getString("user-login-token", null)
+    }
+
+    fun getThemeSetting(): StateFlow<Boolean> {
+        return MutableStateFlow(preferences.getBoolean("dark-mode", false))
+    }
+
+    fun setThemeSetting(isDarkMode: Boolean) {
+        val editor = preferences.edit()
+        editor.putBoolean("dark-mode",  isDarkMode)
+        editor.apply()
     }
 
     companion object {

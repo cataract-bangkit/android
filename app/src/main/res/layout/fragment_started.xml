@@ -1,39 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center"
-    android:padding="32dp"
     tools:context=".authentication.StartedFragment">
 
-    <TextView
-        style="@style/Heading"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:text="@string/project_title" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:alpha="0.4"
+        android:background="?attr/colorSurfaceContainer"
+        android:contentDescription="@string/onboarding_background"
+        android:src="@drawable/background_splash" />
 
-    <TextView
-        style="@style/SubHeading"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:layout_marginTop="8dp"
-        android:text="@string/project_subtitle" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_margin="32dp">
 
-    <Button
-        android:id="@+id/login"
-        style="@style/TextSemiBold"
-        android:layout_width="200dp"
-        android:layout_marginTop="30dp"
-        android:text="@string/login" />
+        <TextView
+            style="@style/Heading"
+            android:text="@string/project_title"
+            android:textAlignment="center"
+            android:textSize="30sp"
+            android:textColor="?attr/colorPrimary" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/register"
-        style="@style/TextSemiBold"
-        android:backgroundTint="?attr/colorTertiary"
-        android:layout_width="200dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/register" />
+        <TextView
+            style="@style/SubHeading"
+            android:layout_marginTop="8dp"
+            android:text="@string/project_subtitle"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
-</LinearLayout>
+        <Button
+            android:id="@+id/login"
+            style="@style/TextSemiBold"
+            android:layout_width="200dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/login" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/register"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/register" />
+
+    </LinearLayout>
+
+</FrameLayout>

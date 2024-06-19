@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.cataract.detection.DashboardActivity
 import com.cataract.detection.R
 import com.cataract.detection.databinding.FragmentLoginBinding
@@ -45,19 +46,19 @@ class LoginFragment : Fragment() {
             )
         }
 
-        loginViewModel.messageError.observe(requireActivity(), Observer{ message ->
+        loginViewModel.messageError.observe(viewLifecycleOwner, Observer{ message ->
             message?.let {
                 showToast(it)
             }
         })
 
-        loginViewModel.messageSuccess.observe(requireActivity(), Observer{ message ->
+        loginViewModel.messageSuccess.observe(viewLifecycleOwner, Observer{ message ->
             message?.let {
                 binding.alertSuccess.visibility = View.VISIBLE
             }
         })
 
-        loginViewModel.isLoading.observe(requireActivity(), Observer{
+        loginViewModel.isLoading.observe(viewLifecycleOwner, Observer{
             showLoading(it)
         })
 
@@ -67,6 +68,10 @@ class LoginFragment : Fragment() {
             startActivity(moveOn)
             requireActivity().finishAffinity()
         }
+
+        binding.redirectToRegister.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
     }
 
     private fun showToast(message: String) {
@@ -74,6 +79,8 @@ class LoginFragment : Fragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        _binding?.let {
+            it.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
     }
 }

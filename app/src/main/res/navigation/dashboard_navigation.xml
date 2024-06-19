@@ -9,7 +9,18 @@
         android:id="@+id/homeFragment"
         android:name="com.cataract.detection.dashboard.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detectionFragment"
+            app:destination="@id/detectionFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_articleFragment"
+            app:destination="@id/articleFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailArticleFragment"
+            app:destination="@id/detailArticleFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/detectionFragment"
         android:name="com.cataract.detection.dashboard.DetectionFragment"
@@ -28,7 +39,11 @@
         <action
             android:id="@+id/action_historyFragment_to_detailHistoryFragment"
             app:destination="@id/detailHistoryFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_detectionFragment"
+            app:destination="@id/detectionFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/articleFragment"
         android:name="com.cataract.detection.dashboard.ArticleFragment"
@@ -38,6 +53,7 @@
             android:id="@+id/action_articleFragment_to_detailArticleFragment"
             app:destination="@id/detailArticleFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.cataract.detection.dashboard.SettingFragment"
@@ -58,4 +74,5 @@
         android:name="com.cataract.detection.dashboard.DetailHistoryFragment"
         android:label="fragment_detail_history"
         tools:layout="@layout/fragment_detail_history" />
+
 </navigation>

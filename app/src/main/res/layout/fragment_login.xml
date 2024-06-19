@@ -114,12 +114,29 @@
                 android:textSize="16sp"
                 android:text="@string/login" />
 
-            <TextView
-                style="@style/SubHeading"
-                android:textAlignment="center"
-                android:textSize="16sp"
-                android:text="@string/register_redirect"
-                android:layout_marginBottom="64dp"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_marginBottom="64dp">
+
+                <TextView
+                    style="@style/SubHeading"
+                    android:layout_width="wrap_content"
+                    android:textSize="16sp"
+                    android:text="@string/register_redirect" />
+
+                <TextView
+                    android:id="@+id/redirectToRegister"
+                    style="@style/SubHeading"
+                    android:layout_width="wrap_content"
+                    android:paddingHorizontal="4dp"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="16sp"
+                    android:text="@string/register" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
