@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cataract.detection.connection.endpoint.ApiEndpoint
 import com.cataract.detection.connection.model.LoginModel
-import com.cataract.detection.connection.model.RegisterModel
 import com.cataract.detection.connection.service.ApiAuthenticationService
 import com.cataract.detection.connection.service.PreferencesService
 import retrofit2.Call

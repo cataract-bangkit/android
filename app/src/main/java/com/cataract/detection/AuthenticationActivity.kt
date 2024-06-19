@@ -14,9 +14,6 @@ class AuthenticationActivity : AppCompatActivity() {
         _binding = ActivityAuthenticationBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-
-        // TODO: AuthenticationActivity algorithm here
-
     }
 
     override fun onDestroy() {
