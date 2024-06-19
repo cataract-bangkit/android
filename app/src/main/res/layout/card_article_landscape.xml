@@ -39,7 +39,7 @@
                 style="@style/TextSemiBold"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:maxLines="2"
+                android:maxLines="3"
                 android:layout_gravity="start"
                 android:text="@string/placeholder_title" />
 
