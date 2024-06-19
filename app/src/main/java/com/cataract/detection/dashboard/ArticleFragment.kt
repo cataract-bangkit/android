@@ -74,29 +74,27 @@ class ArticleFragment : Fragment() {
 
         listArticleAdapter.setOnItemClickCallback(object : ListArticlePortraitAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ArticleModel) {
-                showArticlePortrait(data)
+                showArticle(data)
             }
         })
     }
 
     private fun showArticleLandscape(){
         val listArticleAdapter = ListArticleLandscapeAdapter(articleLandscape)
-        rvArticleLandscape.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        rvArticleLandscape.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         rvArticleLandscape.adapter = listArticleAdapter
 
         listArticleAdapter.setOnItemClickCallback(object : ListArticleLandscapeAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ArticleModel) {
-                showArticleLandscape(data)
+                showArticle(data)
             }
         })
     }
 
-    private fun showArticlePortrait(data: ArticleModel) {
-        findNavController().navigate(R.id.action_articleFragment_to_detailArticleFragment)
-    }
-
-    private fun showArticleLandscape(data: ArticleModel) {
-        findNavController().navigate(R.id.action_articleFragment_to_detailArticleFragment)
+    private fun showArticle(data: ArticleModel) {
+        val bundle = Bundle()
+        bundle.putParcelable("article", data)
+        findNavController().navigate(R.id.action_articleFragment_to_detailArticleFragment, bundle)
     }
 
     private fun showLoading(isLoading: Boolean) {

@@ -67,12 +67,14 @@ class HomeFragment : Fragment() {
 
         listArticleAdapter.setOnItemClickCallback(object : ListArticlePortraitAdapter.OnItemClickCallback {
             override fun onItemClicked(data: ArticleModel) {
-                showArticlePortrait(data)
+                showArticle(data)
             }
         })
     }
 
-    private fun showArticlePortrait(article: ArticleModel) {
-        // TODO
+    private fun showArticle(data: ArticleModel) {
+        val bundle = Bundle()
+        bundle.putParcelable("article", data)
+        findNavController().navigate(R.id.action_homeFragment_to_detailArticleFragment, bundle)
     }
 }
