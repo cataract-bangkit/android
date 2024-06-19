@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyDetectionCataract</string>
+    <string name="app_name">CatarAct</string>
     <string name="project_title">CatarAct</string>
     <string name="project_subtitle">Early Cataract Detection using Image Recognition</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
