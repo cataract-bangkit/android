@@ -47,7 +47,7 @@ class ResultDetectionFragment : Fragment() {
             .into(binding.imageView)
 
         binding.result.text = result
-        binding.persen.text = "Deteksi menunjukkan bahwa kondisi mata Anda ${result} dengan tingkat akurasi ${persen}."
+        binding.persen.text = "Deteksi menunjukkan bahwa kondisi mata Anda ${result} dengan confidence rate ${persen}. confidence rate adalah tingkat kepercayaan diri alat deteksi kami terhadap hasil deteksi."
     }
 
     fun stringToDouble(value: String): Double {

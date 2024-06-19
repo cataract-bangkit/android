@@ -99,7 +99,14 @@ class DetectionFragment : Fragment() {
         var isProcessing = false
 
         binding.deteksi.setOnClickListener {
+
             if (!isProcessing) {
+
+                if (croppedImageUri == null) {
+                    showToast("Please select or capture an image first.")
+                    return@setOnClickListener
+                }
+
                 isProcessing = true
 
                 loading(true)
@@ -135,12 +142,14 @@ class DetectionFragment : Fragment() {
         detectionViewModel.messageError.observe(requireActivity(), Observer{ message ->
             message?.let {
                 showToast(it)
+                loading(false)
             }
         })
 
         detectionViewModel.messageSuccess.observe(requireActivity(), Observer{ message ->
             message?.let {
                 showToast(it)
+                loading(false)
             }
         })
 
